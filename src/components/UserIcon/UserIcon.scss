@@ -1,0 +1,15 @@
+.user-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    overflow: hidden;
+    img{
+        transform: scale(2);
+    }
+    &__missing{
+        font-size: 3rem;
+    }
+}

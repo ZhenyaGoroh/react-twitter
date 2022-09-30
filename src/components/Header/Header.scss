@@ -1,0 +1,35 @@
+@import "../../styles/variables.scss";
+
+.header {
+    height: 5rem;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    &__start{
+        display: flex;
+        align-items: center;
+        width: auto;
+        gap: 3rem;
+    }
+    &__end{
+        display: flex;
+        align-items: center;
+    }
+  
+}
+
+.logo{
+    fill: $primary-color;
+    font-size: 2.5rem;
+}
+
+.hr{
+    position: absolute;
+    opacity: 0.2;
+    left: 0;
+    display: block;
+    width: 100vw;
+    height: 1px;
+    background: $gray-color;
+}

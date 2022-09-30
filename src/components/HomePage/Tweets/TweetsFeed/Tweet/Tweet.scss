@@ -1,0 +1,71 @@
+@import "../../../../../styles/variables.scss";
+
+.tweet {
+    display: flex;
+    border: 0.1px  solid $gray-color;
+    border-radius: 0.3rem;
+    padding: 1.2rem;
+    gap: 1rem;
+    &__inner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: $gap;
+    }
+}
+
+.inner {
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: $sm-fs;
+        &-user {
+            font-weight: 700;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        &-dot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &-date {
+            color: $gray-color;
+        }
+        &-time {
+            color: $gray-color;
+            font-weight: 700;
+        }
+    }
+    &__main {
+        font-size: $big-fs;
+    }
+    &__footer {
+        font-size: $medium-fs;
+        &-comments {
+            cursor: pointer;
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+            width: fit-content;
+            color: $gray-color;
+            &-icon-container {
+                display: flex;
+            }
+            &:hover > .inner__footer-comments-icon-container > .message {
+                fill: $primary-color;
+            }
+            &:hover > .inner__footer-comments-count {
+                color: $primary-color;
+            }
+        }
+        &-icon {
+            font-size: $big-fs;
+        }
+    }
+}
+.message {
+    fill: $gray-color;
+}
