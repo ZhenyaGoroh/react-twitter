@@ -1,5 +1,5 @@
+import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-import { ADD_TWEET } from "../actions/actionTypes";
 
 const initialState = {
   tweets: [
@@ -105,8 +105,8 @@ const initialState = {
     {
       id: uuidv4(),
       text: `'long' использует полное название месяца, 'short' для короткого названия, и 'narrow' для более минимальной версии, например первой буквы в алфавитных языках
-        Вы можете изменить локаль с браузерной 'default' на любую, которая вам понравится (e.g. 'en-us'), и она будет использовать правильное название для того language/country.
-        С помощью toLocaleStringapi приходится каждый раз проходить в локали и опциях. Если вы собираетесь делать использовать одну и ту же локаль инфой и варианты форматирования на кратные разные даты, то можете использовать Intl.DateTimeFormat вместо этого:`,
+          Вы можете изменить локаль с браузерной 'default' на любую, которая вам понравится (e.g. 'en-us'), и она будет использовать правильное название для того language/country.
+          С помощью toLocaleStringapi приходится каждый раз проходить в локали и опциях. Если вы собираетесь делать использовать одну и ту же локаль инфой и варианты форматирования на кратные разные даты, то можете использовать Intl.DateTimeFormat вместо этого:`,
       createdAt: new Date("2022-03-09T23:31:00"),
       author: "Wayne Martin",
       comments: [],
@@ -344,21 +344,27 @@ const initialState = {
   ],
 };
 
-const HomePageReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ADD_TWEET:
+export const tweetsSlice = createSlice({
+  name: "tweets",
+  initialState,
+  reducers: {
+    getTweets: (state, action) => {
+      console.log(action.payload);
+      console.log(state.tweets);
+    },
+    addTweet(state, action) {
       const newTweet = {
         id: uuidv4(),
-        text: action.text,
+        text: action.payload,
         createdAt: new Date(),
         author: "Женя",
         comments: [],
       };
-      return { ...state, tweets: [...state.tweets, newTweet] };
+      return {...state,tweets:[...state.tweets,newTweet]};
+    },
+  },
+});
 
-    default:
-      return state;
-  }
-};
+export const { getTweets , addTweet } = tweetsSlice.actions;
 
-export default HomePageReducer;
+export default tweetsSlice.reducer;

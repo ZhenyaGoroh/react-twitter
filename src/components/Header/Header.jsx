@@ -4,7 +4,7 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 import Button from "../Button/Button";
 function Header() {
   return (
-    <div>
+    <header>
       <div className="header">
         <div className="header__start">
           <div className="header__logo">
@@ -18,8 +18,8 @@ function Header() {
           </div>
         </div>
       </div>
-        <div className="hr"></div>
-    </div>
+      <div className="hr"></div>
+    </header>
   );
 }
 

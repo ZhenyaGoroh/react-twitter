@@ -1,0 +1,30 @@
+@import "../../../styles/variables.scss";
+
+.primary-input {
+    position: relative;
+    background: rgba(240, 238, 255, 1);
+    border-radius: 1.5rem;
+    &__icon {
+        position: absolute;
+        fill: $gray-color;
+        font-size: 1.5rem;
+        top: 25%;
+        left: .7rem;
+    }
+    &__field {
+        width: 100%;
+        gap: 0.5rem;
+        border: none;
+        background: $input-color;
+        border-radius: 1.5rem;
+        box-sizing: border-box;
+        font-size: $medium-fs;
+        color: $gray-color;
+        outline: none;
+        padding: 0.8rem;
+        padding-left: 2.5rem;
+        &:focus {
+            background: rgb(235, 233, 254);
+        }
+    }
+}

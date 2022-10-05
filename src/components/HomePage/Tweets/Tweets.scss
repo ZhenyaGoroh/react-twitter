@@ -3,6 +3,7 @@
 .tweets{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: $gap;
-    max-width: 45rem;
+    min-width: 45rem;
 }

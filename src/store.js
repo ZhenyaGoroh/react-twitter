@@ -1,9 +1,16 @@
-import { legacy_createStore as createStore } from "redux";
-import rootReducer from "./reducers/rootReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import { getDefaultMiddleware } from "@reduxjs/toolkit";
+import tweetsSlice from "./slices/tweetsSlice";
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const customizedMiddleware = getDefaultMiddleware({
+  serializableCheck: false,
+});
+
+const store = configureStore({
+  reducer: {
+    tweets: tweetsSlice,
+  },
+  middleware: customizedMiddleware,
+});
 
 export default store;

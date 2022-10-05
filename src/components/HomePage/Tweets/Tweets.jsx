@@ -1,16 +1,21 @@
-import React from 'react'
-import TweetFeedContainer from '../../../containers/TweetFeedContainer'
-import NewTweet from './NewTweet/NewTweet'
-import "./Tweets.scss"
-
+import React from "react";
+import NewTweetContainer from "../../../containers/NewTweetContainer";
+import TweetFeedContainer from "../../../containers/TweetFeedContainer";
+import Button from "../../Button/Button";
+import "./Tweets.scss";
+import TweetsFeed from "./TweetsFeed/TweetsFeed";
 
 function Tweets() {
+  
   return (
-    <div className='tweets'>
-      <NewTweet/>
-      <TweetFeedContainer/>
+    <div className="tweets">
+      <NewTweetContainer />
+      <TweetsFeed/>
+      <div>
+        <Button title="Load more" />
+      </div>
     </div>
-  )
+  );
 }
 
-export default Tweets
+export default Tweets;

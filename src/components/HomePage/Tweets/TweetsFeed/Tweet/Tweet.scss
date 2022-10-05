@@ -2,8 +2,9 @@
 
 .tweet {
     display: flex;
-    border: 0.1px  solid $gray-color;
-    border-radius: 0.3rem;
+    border: 0.2px  solid $border-color;
+    border-bottom: 0.1px;
+    background-clip: padding-box;
     padding: 1.2rem;
     gap: 1rem;
     &__inner {
@@ -11,6 +12,9 @@
         display: flex;
         flex-direction: column;
         gap: $gap;
+    }
+    &:hover{
+        background: $hover-color;
     }
 }
 

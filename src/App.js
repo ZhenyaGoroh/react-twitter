@@ -1,16 +1,22 @@
-import { Provider } from "react-redux";
+
 import "./App.scss";
+import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import HomePage from "./components/HomePage/HomePage";
-import  store  from "./store";
+
 function App() {
   return (
-    <Provider store={store}>
+    
       <div className="container">
         <Header />
-        <HomePage />
+        <div className="main">
+          <HomePage />
+        </div>
+        <div className="footer">
+          <Footer />
+        </div>
       </div>
-    </Provider>
+    
   );
 }
 

@@ -1,6 +1,17 @@
-@import 'scss-reset/_reset.scss';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-body{
-    font-family: 'Roboto', sans-serif;
+@import "scss-reset/_reset.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+a {
+    text-decoration: none;
+    color: inherit;
+}
+html,
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    overflow-x: hidden;
+}
+#root{
+    min-height: 100%;
 }
