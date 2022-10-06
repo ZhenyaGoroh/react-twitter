@@ -6,7 +6,7 @@ const initialState = {
     {
       id: uuidv4(),
       text: "Привет! #js #py",
-      createdAt: new Date("2022-03-09T23:00:00"),
+      createdAt: new Date("2022-03-09T23:03:00"),
       author: "Zhenya",
       comments: [],
       icon: "https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg",
@@ -328,6 +328,7 @@ const initialState = {
       comments: [],
     },
   ],
+  filteredTweets: [],
   month_names_short: [
     "Jan",
     "Feb",
@@ -349,8 +350,63 @@ export const tweetsSlice = createSlice({
   initialState,
   reducers: {
     getTweets: (state, action) => {
-      console.log(action.payload);
-      console.log(state.tweets);
+      let filteredTweets = state.tweets
+        .filter(
+          (tweet) =>
+            !action.payload.author ||
+            tweet.author
+              .toLowerCase()
+              .includes(action.payload.author.toLowerCase())
+        )
+        .filter(
+          (tweet) =>
+            !action.payload.text ||
+            tweet.text
+              .toLowerCase()
+              .includes(action.payload.text?.toLowerCase())
+        )
+        .filter(
+          (tweet) =>
+            !action.payload.dateFrom ||
+            new Date(tweet.createdAt)
+              .toLocaleDateString()
+              .split(".")
+              .reverse()
+              .join("") >=
+              new Date(action.payload.dateFrom)
+                .toLocaleDateString()
+                .split(".")
+                .reverse()
+                .join("")
+        )
+        .filter(
+          (tweet) =>
+            !action.payload.dateTo ||
+            new Date(tweet.createdAt)
+              .toLocaleDateString()
+              .split(".")
+              .reverse()
+              .join("") <=
+              new Date(action.payload.dateTo)
+                .toLocaleDateString()
+                .split(".")
+                .reverse()
+                .join("")
+        );
+          console.log(action.payload.hashtag);
+      filteredTweets = action.payload.hashtag
+        ? action.payload.hashtag
+            .split(" ")
+            .reduce(
+              (tweets, elem) =>
+                tweets.filter((tweet) => tweet.text.includes(elem)),
+              filteredTweets
+            )
+        : filteredTweets;
+      return { ...state, filteredTweets: [...filteredTweets] };
+    },
+    clearFilteredTweets(state){
+      return {...state,filteredTweets:[]}
     },
     addTweet(state, action) {
       const newTweet = {
@@ -360,11 +416,11 @@ export const tweetsSlice = createSlice({
         author: "Женя",
         comments: [],
       };
-      return {...state,tweets:[...state.tweets,newTweet]};
+      return { ...state, tweets: [...state.tweets, newTweet] };
     },
   },
 });
 
-export const { getTweets , addTweet } = tweetsSlice.actions;
+export const { getTweets, addTweet,clearFilteredTweets } = tweetsSlice.actions;
 
 export default tweetsSlice.reducer;

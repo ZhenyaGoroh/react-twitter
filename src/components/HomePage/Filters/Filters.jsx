@@ -4,17 +4,27 @@ import { BiSearch, BiHash } from "react-icons/bi";
 import { BsFillFilePersonFill } from "react-icons/bs";
 import "./Filters.scss";
 import Button from "../../Button/Button";
-
+import { useDispatch } from "react-redux";
+import { clearFilteredTweets, getTweets } from "../../../slices/tweetsSlice";
 
 function Filters() {
+  const setter = () => {
+    setAuthor("");
+    setDateFrom("");
+    setDateTo("");
+    setText("");
+    setHashtag("");
+  };
   const [author, setAuthor] = useState("");
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [text, setText] = useState("");
-  const [hashTag, setHashTag] = useState("");
+  const [hashtag, setHashtag] = useState("");
+
+  const dispatch = useDispatch();
 
   return (
-    <form className="filters">
+    <div className="filters">
       <h2 className="filters__title">Filters</h2>
       <div className="filters__author filters__block">
         <div className="filters__author-title filters__subtitle">
@@ -69,8 +79,8 @@ function Filters() {
         </div>
         <div className="filters__hashtag-input">
           <PrimaryInput
-            value={hashTag}
-            onChange={setHashTag}
+            value={hashtag}
+            onChange={setHashtag}
             placeholder="Enter search #tags"
             icon={BiHash}
           />
@@ -78,11 +88,33 @@ function Filters() {
       </div>
       <div className="filters__buttons">
         <div className="filters__buttons-clear">
-          <Button title="clear" disabled = {author||dateFrom||dateTo||text||hashTag?false:true}/>
+          <Button
+            dispatch={dispatch}
+            onClick={clearFilteredTweets}
+            title="clear"
+            disabled={
+              author || dateFrom || dateTo || text || hashtag ? false : true
+            }
+            setValue={setter}
+          />
         </div>
-        <Button title="search" disabled = {author||dateFrom||dateTo||text||hashTag?false:true}/>
+        <Button
+          dispatch={dispatch}
+          onClick={getTweets}
+          value={{
+            author: author,
+            dateFrom: dateFrom,
+            dateTo: dateTo,
+            text: text,
+            hashtag: hashtag,
+          }}
+          title="search"
+          disabled={
+            author || dateFrom || dateTo || text || hashtag ? false : true
+          }
+        />
       </div>
-    </form>
+    </div>
   );
 }
 

@@ -1,0 +1,48 @@
+@import "../../../styles/variables.scss";
+
+.comment {
+    display: flex;
+    background: #e2e2e2;
+    border-radius: 2rem;
+    background-clip: padding-box;
+    padding: 1.2rem;
+    gap: 1rem;
+    width: fit-content;
+    max-width: 30rem;
+    &__inner {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: $gap;
+    }
+}
+
+.inner {
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: $sm-fs;
+        &-user {
+            font-weight: 700;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        &-dot {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        &-date {
+            color: $gray-color;
+        }
+        &-time {
+            color: $gray-color;
+            font-weight: 700;
+        }
+    }
+    &__main {
+        font-size: $big-fs;
+    }
+}

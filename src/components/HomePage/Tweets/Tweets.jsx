@@ -1,6 +1,5 @@
 import React from "react";
-import NewTweetContainer from "../../../containers/NewTweetContainer";
-import TweetFeedContainer from "../../../containers/TweetFeedContainer";
+import NewTweet from "./NewTweet/NewTweet"
 import Button from "../../Button/Button";
 import "./Tweets.scss";
 import TweetsFeed from "./TweetsFeed/TweetsFeed";
@@ -9,7 +8,7 @@ function Tweets() {
   
   return (
     <div className="tweets">
-      <NewTweetContainer />
+      <NewTweet/>
       <TweetsFeed/>
       <div>
         <Button title="Load more" />
