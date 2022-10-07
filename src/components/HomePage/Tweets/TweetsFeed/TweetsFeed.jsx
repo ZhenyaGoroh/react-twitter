@@ -1,6 +1,6 @@
 import React from "react";
 import Tweet from "./Tweet/Tweet";
-import "./TweetsFeed.scss";
+import s from "./TweetsFeed.module.scss";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ function TweetsFeed() {
     .sort((a, b) => b.createdAt - a.createdAt)
     .map((tweet) => (
       <Link
-        key={tweet.id}
+      key={tweet.id}
         to={"/tweets/" + tweet.text.split(" ").slice(0, 3).join("_") + "..."}
         state={{
           tweet,
@@ -46,7 +46,7 @@ function TweetsFeed() {
       </Link>
     ));
 
-  return <div className="tweets-feed">{tweets}</div>;
+  return <div className={s.tweets_feed}>{tweets}</div>;
 }
 
 export default TweetsFeed;

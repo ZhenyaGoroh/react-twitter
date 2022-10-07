@@ -1,24 +1,24 @@
 import React from "react";
-import "./Header.scss";
+import s from "./Header.module.scss";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import Button from "../Button/Button";
 function Header() {
   return (
     <header>
-      <div className="header">
-        <div className="header__start">
-          <div className="header__logo">
-            <AiFillTwitterCircle className="logo" />
+      <div className={s.header}>
+        <div className={s.header__start}>
+          <div className={s.header__logo}>
+            <AiFillTwitterCircle className={s.logo} />
           </div>
-          <div className="header__breadcrumbs"></div>
+          <div className={s.header__breadcrumbs}></div>
         </div>
-        <div className="header__end">
-          <div className="header__btn">
+        <div className={s.header__end}>
+          <div className={s.header__btn}>
             <Button title="log in" />
           </div>
         </div>
       </div>
-      <div className="hr"></div>
+      <div className={s.hr}></div>
     </header>
   );
 }

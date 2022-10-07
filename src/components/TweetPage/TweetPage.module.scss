@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    &-start {
+    &_start {
         display: flex;
         background-clip: padding-box;
         gap: 1rem;
@@ -26,7 +26,7 @@
             gap: $gap;
         }
     }
-    &-main{
+    &_main{
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -43,7 +43,7 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            &-field{
+            &_field{
                 display: flex;
                 width: 100%;
                 gap: 1rem;
@@ -58,21 +58,21 @@
         align-items: center;
         gap: 0.3rem;
         font-size: $sm-fs;
-        &-user {
+        &_user {
             font-weight: 700;
             &:hover {
                 text-decoration: underline;
             }
         }
-        &-dot {
+        &_dot {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        &-date {
+        &_date {
             color: $gray-color;
         }
-        &-time {
+        &_time {
             color: $gray-color;
             font-weight: 700;
         }
@@ -82,7 +82,7 @@
     }
 }
 
-.tweet-hr{
+.tweet_hr{
     position: relative;
     left: -1.2rem;
     display: block;
@@ -91,7 +91,7 @@
     background: $border-color;
 }
 
-.no-comments{
+.no_comments{
     font-size: 1.5rem;
     display: flex;
     align-items: center;

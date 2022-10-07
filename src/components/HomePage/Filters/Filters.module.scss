@@ -24,7 +24,7 @@
         gap: $gap;
     }
     &__date{
-        &-inputs{
+        &_inputs{
             display: flex;
             gap: .3rem;
             align-items: center;
@@ -39,13 +39,13 @@
     }
 }
 
-.filters__buttons-clear Button{
+.filters__buttons_clear Button{
     background: white;
     border: 1px solid $border-color;
     color: $gray-color;
 }
 
-.filters__buttons-clear Button:hover{
+.filters__buttons_clear Button:hover{
     background: $border-color;
     color: white;
 }

@@ -1,12 +1,12 @@
 import React from "react";
-import "./Footer.scss";
+import s from "./Footer.module.scss";
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__site-name">Twitter</div>
-      <div className="footer__creator-name">Zhenya Goroh</div>
-      <div className="footer__email"><a href="email:zhenyagoroh@gamil.com">zhenyagoroh@gamil.com</a></div>
-      <div className="footer__date">{new Date().toLocaleDateString()}</div>
+    <footer className={s.footer}>
+      <div className={s.footer__site_name}>Twitter</div>
+      <div className={s.footer__creator_name}>Zhenya Goroh</div>
+      <div className={s.footer__email}><a href="email:zhenyagoroh@gamil.com">zhenyagoroh@gamil.com</a></div>
+      <div className={s.footer__date}>{new Date().toLocaleDateString()}</div>
     </footer>
   );
 }

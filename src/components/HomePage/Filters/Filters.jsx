@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PrimaryInput from "../../Inputs/PrimaryInput/PrimaryInput";
 import { BiSearch, BiHash } from "react-icons/bi";
 import { BsFillFilePersonFill } from "react-icons/bs";
-import "./Filters.scss";
+import s from "./Filters.module.scss";
 import Button from "../../Button/Button";
 import { useDispatch } from "react-redux";
 import { clearFilteredTweets, getTweets } from "../../../slices/tweetsSlice";
@@ -24,13 +24,13 @@ function Filters() {
   const dispatch = useDispatch();
 
   return (
-    <div className="filters">
-      <h2 className="filters__title">Filters</h2>
-      <div className="filters__author filters__block">
-        <div className="filters__author-title filters__subtitle">
+    <div className={s.filters}>
+      <h2 className={s.filters__title}>Filters</h2>
+      <div className={s.filters__author+" "+s.filters__block}>
+        <div className={s.filters__author_title+" "+s.filters__subtitle}>
           Search tweets by author name
         </div>
-        <div className="filters__author-input">
+        <div className={s.filters__author_input}>
           <PrimaryInput
             value={author}
             onChange={setAuthor}
@@ -39,11 +39,11 @@ function Filters() {
           />
         </div>
       </div>
-      <div className="filters__date filters__block">
-        <div className="filters__date-title filters__subtitle">
+      <div className={s.filters__date+" "+s.filters__block}>
+        <div className={s.filters__date_title+" "+ s.filters__subtitle}>
           Search tweets by date
         </div>
-        <div className="filters__date-inputs">
+        <div className={s.filters__date_inputs}>
           <span>from</span>
           <PrimaryInput
             value={dateFrom}
@@ -60,11 +60,11 @@ function Filters() {
           />
         </div>
       </div>
-      <div placeholder="filters__text filters__block">
-        <div className="filters__text-title filters__subtitle">
+      <div placeholder={s.filters__text+" "+ s.filters__block}>
+        <div className={s.filters__text_title+" "+ s.filters__subtitle}>
           Search tweets by text
         </div>
-        <div className="filters__text-input">
+        <div className={s.filters__text_input}>
           <PrimaryInput
             value={text}
             onChange={setText}
@@ -73,11 +73,11 @@ function Filters() {
           />
         </div>
       </div>
-      <div className="filters__hashtag filters__block">
-        <div className="filters__hashtag-title filters__subtitle">
+      <div className={s.filters__hashtag+" "+ s.filters__block}>
+        <div className={s.filters__hashtag_title+" "+ s.filters__subtitle}>
           Search tweets by text
         </div>
-        <div className="filters__hashtag-input">
+        <div className={s.filters__hashtag_input}>
           <PrimaryInput
             value={hashtag}
             onChange={setHashtag}
@@ -86,8 +86,8 @@ function Filters() {
           />
         </div>
       </div>
-      <div className="filters__buttons">
-        <div className="filters__buttons-clear">
+      <div className={s.filters__buttons}>
+        <div className={s.filters__buttons_clear}>
           <Button
             dispatch={dispatch}
             onClick={clearFilteredTweets}

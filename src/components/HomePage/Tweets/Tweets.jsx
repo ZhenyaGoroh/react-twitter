@@ -1,13 +1,13 @@
 import React from "react";
 import NewTweet from "./NewTweet/NewTweet"
 import Button from "../../Button/Button";
-import "./Tweets.scss";
+import s from "./Tweets.module.scss";
 import TweetsFeed from "./TweetsFeed/TweetsFeed";
 
 function Tweets() {
   
   return (
-    <div className="tweets">
+    <div className={s.tweets}>
       <NewTweet/>
       <TweetsFeed/>
       <div>

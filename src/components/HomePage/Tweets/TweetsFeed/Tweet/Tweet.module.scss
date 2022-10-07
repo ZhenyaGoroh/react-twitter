@@ -24,21 +24,21 @@
         align-items: center;
         gap: 0.3rem;
         font-size: $sm-fs;
-        &-user {
+        &_user {
             font-weight: 700;
             &:hover{
                 text-decoration: underline;
             }
         }
-        &-dot {
+        &_dot {
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        &-date {
+        &_date {
             color: $gray-color;
         }
-        &-time {
+        &_time {
             color: $gray-color;
             font-weight: 700;
         }
@@ -48,24 +48,24 @@
     }
     &__footer {
         font-size: $medium-fs;
-        &-comments {
+        &_comments {
             cursor: pointer;
             display: flex;
             gap: .5rem;
             align-items: center;
             width: fit-content;
             color: $gray-color;
-            &-icon-container {
+            &_icon-container {
                 display: flex;
             }
-            &:hover > .inner__footer-comments-icon-container > .message {
+            &:hover > .inner__footer_comments_icon_container > .message {
                 fill: $primary-color;
             }
-            &:hover > .inner__footer-comments-count {
+            &:hover > .inner__footer_comments_count {
                 color: $primary-color;
             }
         }
-        &-icon {
+        &_icon {
             font-size: $big-fs;
         }
     }
