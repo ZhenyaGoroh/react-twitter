@@ -6,23 +6,23 @@ import { Link } from "react-router-dom";
 
 function TweetsFeed() {
   const tweetsState = useSelector((state) => state.tweets);
-
+  
   let tweets = [
     ...(tweetsState.filteredTweets.length > 0
       ? tweetsState.filteredTweets
       : tweetsState.tweets),
   ]
-    .sort((a, b) => b.createdAt - a.createdAt)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .map((tweet) => (
       <Link
       key={tweet.id}
         to={"/tweets/" + tweet.text.split(" ").slice(0, 3).join("_") + "..."}
         state={{
-          tweet,
+          tweetId:tweet.id,
           date:
-            tweet.createdAt.getDate() +
+            new Date(tweet.createdAt).getDate() +
             " " +
-            tweetsState.month_names_short[tweet.createdAt.getMonth()],
+            tweetsState.month_names_short[new Date(tweet.createdAt).getMonth()],
         }}
       >
         <Tweet
@@ -30,15 +30,15 @@ function TweetsFeed() {
           text={tweet.text}
           author={tweet.author}
           date={
-            tweet.createdAt.getDate() +
+            new Date(tweet.createdAt).getDate() +
             " " +
-            tweetsState.month_names_short[tweet.createdAt.getMonth()]
+            tweetsState.month_names_short[new Date(tweet.createdAt).getMonth()]
           }
-          hours={tweet.createdAt.getHours()}
+          hours={new Date(tweet.createdAt).getHours()}
           minutes={
-            tweet.createdAt.getMinutes() < 10
-              ? "0" + tweet.createdAt.getMinutes()
-              : tweet.createdAt.getMinutes()
+            new Date(tweet.createdAt).getMinutes() < 10
+              ? "0" + new Date(tweet.createdAt).getMinutes()
+              : new Date(tweet.createdAt).getMinutes()
           }
           commentsCount={tweet.comments.length}
           icon={tweet.icon}
