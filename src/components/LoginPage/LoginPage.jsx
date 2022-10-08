@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 function LoginPage() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatedPassword, setRepeatedPassword] = useState("");
   return (
     <div className={s.register}>
       <div className={s.register__img}>
