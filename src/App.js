@@ -6,22 +6,55 @@ import { Route, Routes } from "react-router-dom";
 import TweetPage from "./components/TweetPage/TweetPage";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import RegisterPage from "./components/RegisterPage/RegisterPage";
+import RegistrationPage from "./components/RegistrationPage/RegistrationPage";
+import RegistrationHeader from "./components/RegistrationHeader/RegistrationHeader";
+import LoginPage from "./components/LoginPage/LoginPage";
 function App() {
   const state = useSelector((state) => state.tweets);
-  
+
   useEffect(() => {
     localStorage.setItem("tweets", JSON.stringify(state));
   }, [state]);
   return (
     <div className="container">
-      <Header />
       <div className="main">
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/tweets/*" element={<TweetPage />} />
-          <Route path="/register/*" element={<RegisterPage />} />
-          
+          <Route
+            path="/"
+            element={
+              <div>
+                <Header />
+                <HomePage />
+              </div>
+            }
+          />
+          <Route
+            path="/tweets/*"
+            element={
+              <div>
+                <Header />
+                <TweetPage />
+              </div>
+            }
+          />
+          <Route
+            path="/registration/"
+            element={
+              <div>
+                <RegistrationHeader />
+                <RegistrationPage />
+              </div>
+            }
+          />
+          <Route
+            path="/login/"
+            element={
+              <div>
+                <RegistrationHeader />
+                <LoginPage />
+              </div>
+            }
+          />
         </Routes>
       </div>
       <div className="footer">

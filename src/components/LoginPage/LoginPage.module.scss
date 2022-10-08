@@ -1,0 +1,90 @@
+@import "../../styles/variables.scss";
+
+.register {
+    display: flex;
+    justify-content: flex-end;
+    &__img {
+        position: absolute;
+        left: 0;
+        width: 50vw;
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url(https://abs.twimg.com/sticky/illustrations/lohp_1302x955.png);
+    }
+}
+
+.img {
+    &__icon {
+        font-size: 25rem;
+        fill: white;
+        box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 1);
+    }
+}
+
+.form {
+    width: 37vw;
+    height: 80vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    &__title {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 55%;
+    }
+    &__btn{
+        margin-top: 2rem;
+        width: 70%;
+    }
+    &__already{
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        width: 70%;
+        &_text{
+            color: $gray-color;
+        }
+    }
+    &__footer{
+        width: 55%;
+        display: flex;
+
+        color: $gray-color;
+        font-size: $medium-fs;
+        &_btn{
+            width: 100%;
+            padding: .5rem .2rem;
+            text-transform: uppercase;
+            color: $primary-color;
+            font-size: $small-fs;
+            font-weight: 700;
+            border:1px solid $primary-color;
+            border-radius: 3rem;
+            transition: all .2s;
+            &:hover{
+                background: $primary-color;
+                color: white;
+            }
+        }
+        &_link{
+            width: 100%;
+            display: flex;
+        }
+    }
+}
+.hr{
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: $border-color;
+}
