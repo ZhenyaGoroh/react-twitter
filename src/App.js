@@ -6,9 +6,10 @@ import { Route, Routes } from "react-router-dom";
 import TweetPage from "./components/TweetPage/TweetPage";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import RegisterPage from "./components/RegisterPage/RegisterPage";
 function App() {
   const state = useSelector((state) => state.tweets);
-  console.log("app ",JSON.parse(localStorage.getItem("tweets")));
+  
   useEffect(() => {
     localStorage.setItem("tweets", JSON.stringify(state));
   }, [state]);
@@ -19,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/tweets/*" element={<TweetPage />} />
+          <Route path="/register/*" element={<RegisterPage />} />
+          
         </Routes>
       </div>
       <div className="footer">

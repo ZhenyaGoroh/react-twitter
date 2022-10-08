@@ -3,10 +3,12 @@ import Tweet from "./Tweet/Tweet";
 import s from "./TweetsFeed.module.scss";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import Button from "../../../Button/Button";
 
+// TODO:Pagination
 function TweetsFeed() {
   const tweetsState = useSelector((state) => state.tweets);
-  
+
   let tweets = [
     ...(tweetsState.filteredTweets.length > 0
       ? tweetsState.filteredTweets
@@ -15,10 +17,10 @@ function TweetsFeed() {
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .map((tweet) => (
       <Link
-      key={tweet.id}
+        key={tweet.id}
         to={"/tweets/" + tweet.text.split(" ").slice(0, 3).join("_") + "..."}
         state={{
-          tweetId:tweet.id,
+          tweetId: tweet.id,
           date:
             new Date(tweet.createdAt).getDate() +
             " " +
@@ -46,7 +48,14 @@ function TweetsFeed() {
       </Link>
     ));
 
-  return <div className={s.tweets_feed}>{tweets}</div>;
+  return (
+    <>
+      <div className={s.tweets_feed}>{tweets}</div>
+      <div>
+        <Button title="Load more" />
+      </div>
+    </>
+  );
 }
 
 export default TweetsFeed;

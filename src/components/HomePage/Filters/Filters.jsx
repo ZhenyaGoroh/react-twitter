@@ -26,8 +26,8 @@ function Filters() {
   return (
     <div className={s.filters}>
       <h2 className={s.filters__title}>Filters</h2>
-      <div className={s.filters__author+" "+s.filters__block}>
-        <div className={s.filters__author_title+" "+s.filters__subtitle}>
+      <div className={s.filters__author + " " + s.filters__block}>
+        <div className={s.filters__author_title + " " + s.filters__subtitle}>
           Search tweets by author name
         </div>
         <div className={s.filters__author_input}>
@@ -39,8 +39,8 @@ function Filters() {
           />
         </div>
       </div>
-      <div className={s.filters__date+" "+s.filters__block}>
-        <div className={s.filters__date_title+" "+ s.filters__subtitle}>
+      <div className={s.filters__date + " " + s.filters__block}>
+        <div className={s.filters__date_title + " " + s.filters__subtitle}>
           Search tweets by date
         </div>
         <div className={s.filters__date_inputs}>
@@ -60,8 +60,8 @@ function Filters() {
           />
         </div>
       </div>
-      <div placeholder={s.filters__text+" "+ s.filters__block}>
-        <div className={s.filters__text_title+" "+ s.filters__subtitle}>
+      <div placeholder={s.filters__text + " " + s.filters__block}>
+        <div className={s.filters__text_title + " " + s.filters__subtitle}>
           Search tweets by text
         </div>
         <div className={s.filters__text_input}>
@@ -73,8 +73,8 @@ function Filters() {
           />
         </div>
       </div>
-      <div className={s.filters__hashtag+" "+ s.filters__block}>
-        <div className={s.filters__hashtag_title+" "+ s.filters__subtitle}>
+      <div className={s.filters__hashtag + " " + s.filters__block}>
+        <div className={s.filters__hashtag_title + " " + s.filters__subtitle}>
           Search tweets by text
         </div>
         <div className={s.filters__hashtag_input}>
@@ -98,21 +98,23 @@ function Filters() {
             setValue={setter}
           />
         </div>
-        <Button
-          dispatch={dispatch}
-          onClick={getTweets}
-          value={{
-            author: author,
-            dateFrom: dateFrom,
-            dateTo: dateTo,
-            text: text,
-            hashtag: hashtag,
-          }}
-          title="search"
-          disabled={
-            author || dateFrom || dateTo || text || hashtag ? false : true
-          }
-        />
+        <div className="">
+          <Button
+            dispatch={dispatch}
+            onClick={getTweets}
+            value={{
+              author: author,
+              dateFrom: dateFrom,
+              dateTo: dateTo,
+              text: text,
+              hashtag: hashtag,
+            }}
+            title="search"
+            disabled={
+              author || dateFrom || dateTo || text || hashtag ? false : true
+            }
+          />
+        </div>
       </div>
     </div>
   );

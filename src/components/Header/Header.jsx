@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Header.module.scss";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import Button from "../Button/Button";
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <header>
@@ -14,7 +15,9 @@ function Header() {
         </div>
         <div className={s.header__end}>
           <div className={s.header__btn}>
-            <Button title="log in" />
+            <Link to={"/register/"}>
+              <Button title="log in" />
+            </Link>
           </div>
         </div>
       </div>

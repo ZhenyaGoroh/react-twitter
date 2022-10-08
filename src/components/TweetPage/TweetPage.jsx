@@ -22,25 +22,27 @@ function TweetPage() {
   const tweet = tweets.find((tweet) => tweet.id === location.state.tweetId);
   const id = tweet.id;
   const date = location.state.date;
-  const comments = [...tweet.comments].sort((a,b)=>new Date(b.createdAt) - new Date(a.createdAt)).map((comment) => (
-    <Comment
-      key={comment.id}
-      icon={comment.icon}
-      author={comment.author}
-      hours={new Date(comment.createdAt).getHours()}
-      minutes={
-        new Date(comment.createdAt).getMinutes() < 10
-          ? "0" + new Date(comment.createdAt).getMinutes()
-          : new Date(comment.createdAt).getMinutes()
-      }
-      text={comment.text}
-      date={
-        new Date(comment.createdAt).getDate() +
-        " " +
-        month_names_short[new Date(comment.createdAt).getMonth()]
-      }
-    />
-  ));
+  const comments = [...tweet.comments]
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .map((comment) => (
+      <Comment
+        key={comment.id}
+        icon={comment.icon}
+        author={comment.author}
+        hours={new Date(comment.createdAt).getHours()}
+        minutes={
+          new Date(comment.createdAt).getMinutes() < 10
+            ? "0" + new Date(comment.createdAt).getMinutes()
+            : new Date(comment.createdAt).getMinutes()
+        }
+        text={comment.text}
+        date={
+          new Date(comment.createdAt).getDate() +
+          " " +
+          month_names_short[new Date(comment.createdAt).getMonth()]
+        }
+      />
+    ));
   return (
     <div className={s.tweetPage}>
       <div className={s.tweetPage_start}>
@@ -93,13 +95,15 @@ function TweetPage() {
                 onChange={setValue}
               />
             </div>
-            <Button
-              title="add"
-              dispatch={dispatch}
-              onClick={addComment}
-              value={{ value, id }}
-              setValue={setValue}
-            />
+            <div className={s.btn}>
+              <Button
+                title="add"
+                dispatch={dispatch}
+                onClick={addComment}
+                value={{ value, id }}
+                setValue={setValue}
+              />
+            </div>
           </div>
         </div>
       </div>

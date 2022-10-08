@@ -395,7 +395,7 @@ export const tweetsSlice = createSlice({
                 .reverse()
                 .join("")
         );
-          console.log(action.payload.hashtag);
+      
       filteredTweets = action.payload.hashtag
         ? action.payload.hashtag
             .split(" ")
@@ -407,8 +407,8 @@ export const tweetsSlice = createSlice({
         : filteredTweets;
       return { ...state, filteredTweets: [...filteredTweets] };
     },
-    clearFilteredTweets(state){
-      return {...state,filteredTweets:[]}
+    clearFilteredTweets(state) {
+      return { ...state, filteredTweets: [] };
     },
     addTweet(state, action) {
       const newTweet = {
@@ -420,18 +420,32 @@ export const tweetsSlice = createSlice({
       };
       return { ...state, tweets: [...state.tweets, newTweet] };
     },
-    addComment(state,action) {
-      const newComment  = {
-        id:uuidv4(),
-        text:action.payload.value,
-        createdAt:new Date(),
-        author:"Zhenya",
-      }
-      return {...state,tweets:[...state.tweets.map(tweet=>tweet.id===action.payload.id?{...tweet,comments:[...tweet.comments,newComment]}:tweet)]}
-    }
+    addComment(state, action) {
+      const newComment = {
+        id: uuidv4(),
+        text: action.payload.value,
+        createdAt: new Date(),
+        author: "Zhenya",
+      };
+      return {
+        ...state,
+        tweets: [
+          ...state.tweets.map((tweet) =>
+            tweet.id === action.payload.id
+              ? { ...tweet, comments: [...tweet.comments, newComment] }
+              : tweet
+          ),
+        ],
+      };
+    },
   },
 });
 
-export const { getTweets, addTweet,clearFilteredTweets,addComment } = tweetsSlice.actions;
+export const {
+  getTweets,
+  addTweet,
+  clearFilteredTweets,
+  addComment,
+} = tweetsSlice.actions;
 
 export default tweetsSlice.reducer;
