@@ -11,10 +11,7 @@
         font-size: 1.5rem;
         top: 25%;
         right: 3%;
-        fill: $gray-color;
-        &_active {
-            fill: $primary-color;
-        }
+        fill: $primary-color;
     }
     &__field {
         border: 1px solid $border-color;

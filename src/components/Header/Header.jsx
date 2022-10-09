@@ -3,7 +3,9 @@ import s from "./Header.module.scss";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 function Header() {
+  const { isAuth, name } = useAuth();
   return (
     <header>
       <div className={s.header}>
@@ -15,9 +17,16 @@ function Header() {
         </div>
         <div className={s.header__end}>
           <div className={s.header__btn}>
-            <Link to={"/login"}>
-              <Button title="log in" />
-            </Link>
+            {isAuth ? (
+              <div className={s.header__btn}>
+                <div>{name}</div>
+                <Button title="log out" />
+              </div>
+            ) : (
+              <Link to={"/login"}>
+                <Button title="log in" />
+              </Link>
+            )}
           </div>
         </div>
       </div>

@@ -5,8 +5,18 @@ import Input from "../Inputs/Input/Input";
 import { useState } from "react";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 function LoginPage() {
-  const [login, setLogin] = useState("");
+  const dispatch = useDispatch();
+
+const handleLogin = () => {
+  const auth = getAuth();
+  signInWithEmailAndPassword(auth,email,password).then(console.log).catch(console.error)
+}
+
+
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   return (
     <div className={s.register}>
@@ -18,9 +28,9 @@ function LoginPage() {
         <div className={s.form__inputs}>
           <div className={s.form__login}>
             <Input
-              placeholder="Enter your login"
-              value={login}
-              onChange={setLogin}
+              placeholder="Enter your email"
+              value={email}
+              onChange={setEmail}
             />
           </div>
           <div className={s.form__password}>
@@ -42,7 +52,7 @@ function LoginPage() {
         </div>
         <div className={s.form__footer}>
           <p>Don't have an account?</p>
-          <Link to={"/registration"} className = {s.form__footer_link}>
+          <Link to={"/registration"} className={s.form__footer_link}>
             <button className={s.form__footer_btn}>register</button>
           </Link>
         </div>

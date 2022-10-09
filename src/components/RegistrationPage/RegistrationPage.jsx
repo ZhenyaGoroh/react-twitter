@@ -4,11 +4,38 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import Input from "../Inputs/Input/Input";
 import { useState } from "react";
 import Button from "../Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { setUser } from "../../slices/userSlice";
 function RegisterPage() {
-  const [login, setLogin] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
+
+  const handleRegister = () => {
+    const auth = getAuth();
+    console.log(auth);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        console.log(user);
+        dispatch(
+          setUser({
+            name: name,
+            email: user.email,
+            id: user.uid,
+            token: user.accessToken,
+          })
+        );
+        navigate("/");
+      })
+      .catch(console.error());
+  };
+
   return (
     <div className={s.register}>
       <div className={s.register__img}>
@@ -17,11 +44,20 @@ function RegisterPage() {
       <div className={s.form}>
         <div className={s.form__title}>Join Twitter now!</div>
         <div className={s.form__inputs}>
-          <div className={s.form__login}>
+          <div className={s.form__name}>
             <Input
-              placeholder="Enter your login"
-              value={login}
-              onChange={setLogin}
+              type="text"
+              placeholder="Enter your name"
+              value={name}
+              onChange={setName}
+            />
+          </div>
+          <div className={s.form__email}>
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={setEmail}
             />
           </div>
           <div className={s.form__password}>
@@ -42,7 +78,17 @@ function RegisterPage() {
           </div>
         </div>
         <div className={s.form__btn}>
-          <Button title="Register" />
+          <Button
+            disabled={password === repeatedPassword ? false : true}
+            title={
+              repeatedPassword.length > 0
+                ? repeatedPassword === password
+                  ? "register"
+                  : "Passwords do not match"
+                : "register"
+            }
+            handle={handleRegister}
+          />
         </div>
         <div className={s.form__already}>
           <div className={s.hr}></div>
@@ -51,9 +97,9 @@ function RegisterPage() {
         </div>
         <div className={s.form__footer}>
           <p>Already have an account?</p>
-          <Link to={"/login"} className = {s.form__footer_link}>
+          <Link to={"/login"} className={s.form__footer_link}>
             <button className={s.form__footer_btn}>log in</button>
-          </Link> 
+          </Link>
         </div>
       </div>
     </div>
