@@ -9,12 +9,24 @@ import { useSelector } from "react-redux";
 import RegistrationPage from "./components/RegistrationPage/RegistrationPage";
 import RegistrationHeader from "./components/RegistrationHeader/RegistrationHeader";
 import LoginPage from "./components/LoginPage/LoginPage";
+import useAuth from "./hooks/useAuth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 function App() {
-  const state = useSelector((state) => state.tweets);
-
+  const tweets = useSelector((state) => state.tweets);
+  const user = useSelector((state) => state.user);
+  const { isAuth } = useAuth();
+  console.log(isAuth);
+  const auth = getAuth();
+  onAuthStateChanged(auth,(user)=>{
+    if(user){
+      localStorage.setItem("authUser",JSON.stringify(auth.currentUser))
+    }
+  })
   useEffect(() => {
-    localStorage.setItem("tweets", JSON.stringify(state));
-  }, [state]);
+    localStorage.setItem("tweets", JSON.stringify(tweets));
+    localStorage.setItem("user",JSON.stringify(user));
+  }, [tweets,user,auth.currentUser]);
+  console.log("dn",auth.currentUser);
   return (
     <div className="container">
       <div className="main">
@@ -22,10 +34,17 @@ function App() {
           <Route
             path="/"
             element={
-              <div>
-                <Header />
-                <HomePage />
-              </div>
+              isAuth ? (
+                <div>
+                  <Header />
+                  <HomePage />
+                </div>
+              ) : (
+                <div>
+                  <RegistrationHeader />
+                  <RegistrationPage />
+                </div>
+              )
             }
           />
           <Route

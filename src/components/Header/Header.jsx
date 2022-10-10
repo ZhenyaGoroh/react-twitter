@@ -4,8 +4,12 @@ import { AiFillTwitterCircle } from "react-icons/ai";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "../../slices/userSlice";
 function Header() {
-  const { isAuth, name } = useAuth();
+  const userName = useSelector((state) => state.user.name);
+  const { isAuth } = useAuth();
+  const dispatch = useDispatch();
   return (
     <header>
       <div className={s.header}>
@@ -19,8 +23,12 @@ function Header() {
           <div className={s.header__btn}>
             {isAuth ? (
               <div className={s.header__btn}>
-                <div>{name}</div>
-                <Button title="log out" />
+                <div>{userName}</div>
+                <Button
+                  dispatch={dispatch}
+                  onClick={removeUser}
+                  title="log out"
+                />
               </div>
             ) : (
               <Link to={"/login"}>

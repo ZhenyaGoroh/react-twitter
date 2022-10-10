@@ -6,7 +6,7 @@ import { useState } from "react";
 import Button from "../Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { setUser } from "../../slices/userSlice";
 function RegisterPage() {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
+  
 
   const handleRegister = () => {
     const auth = getAuth();
@@ -30,10 +31,14 @@ function RegisterPage() {
             id: user.uid,
             token: user.accessToken,
           })
-        );
+          );
+          updateProfile(auth.currentUser,{
+            displayName:name
+          })
+        
         navigate("/");
       })
-      .catch(console.error());
+      .catch(alert("You are already registered, just login"),navigate("/login"));
   };
 
   return (

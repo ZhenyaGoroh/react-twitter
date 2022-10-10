@@ -4,20 +4,37 @@ import { AiOutlineTwitter } from "react-icons/ai";
 import Input from "../Inputs/Input/Input";
 import { useState } from "react";
 import Button from "../Button/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { setUser } from "../../slices/userSlice";
 function LoginPage() {
   const dispatch = useDispatch();
-
-const handleLogin = () => {
-  const auth = getAuth();
-  signInWithEmailAndPassword(auth,email,password).then(console.log).catch(console.error)
-}
-
-
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        dispatch(
+          setUser({
+            name: auth.currentUser.displayName,
+            email: user.email,
+            id: user.uid,
+            token: user.accessToken,
+          })
+        );
+        navigate("/")
+      })
+      .catch((error)=>{
+        console.log(error.code); 
+        // console.log(error.message); 
+        
+      });
+  };
+
   return (
     <div className={s.register}>
       <div className={s.register__img}>
@@ -43,7 +60,7 @@ const handleLogin = () => {
           </div>
         </div>
         <div className={s.form__btn}>
-          <Button title="Log in" />
+          <Button handle={handleLogin} title="Log in" />
         </div>
         <div className={s.form__already}>
           <div className={s.hr}></div>
