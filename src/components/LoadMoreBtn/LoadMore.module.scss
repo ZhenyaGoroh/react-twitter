@@ -1,0 +1,19 @@
+@import "../../styles/variables.scss";
+.btn {
+    background-color: $primary-color;
+    text-transform: uppercase;
+    padding: 1.1rem 1.5rem;
+    color: white;
+    font-size: $small-fs;
+    border-radius: 3rem;
+    font-weight: 700;
+    min-width: 6rem;
+    transition: background 0.2s;
+    width: 100%;
+    &:hover {
+        background: rgba(34, 107, 202, 1);
+    }
+    &:disabled{
+        opacity: .5;
+    }
+}
