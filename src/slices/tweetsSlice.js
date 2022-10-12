@@ -345,7 +345,7 @@ import { v4 as uuidv4 } from "uuid";
 //   ],
 // };
 
-const initialState = JSON.parse(localStorage.getItem("tweets"))
+const initialState = JSON.parse(localStorage.getItem("tweets"));
 
 export const tweetsSlice = createSlice({
   name: "tweets",
@@ -395,7 +395,7 @@ export const tweetsSlice = createSlice({
                 .reverse()
                 .join("")
         );
-      
+
       filteredTweets = action.payload.hashtag
         ? action.payload.hashtag
             .split(" ")
@@ -415,7 +415,8 @@ export const tweetsSlice = createSlice({
         id: uuidv4(),
         text: action.payload,
         createdAt: new Date(),
-        author: "Женя",
+        author: JSON.parse(localStorage.getItem("user")).name,
+        authorId: JSON.parse(localStorage.getItem("user")).id,
         comments: [],
       };
       return { ...state, tweets: [...state.tweets, newTweet] };
@@ -425,7 +426,8 @@ export const tweetsSlice = createSlice({
         id: uuidv4(),
         text: action.payload.value,
         createdAt: new Date(),
-        author: "Zhenya",
+        author: JSON.parse(localStorage.getItem("user")).name,
+        authorId: JSON.parse(localStorage.getItem("user")).id,
       };
       return {
         ...state,
@@ -438,6 +440,40 @@ export const tweetsSlice = createSlice({
         ],
       };
     },
+    deleteTweet(state, action) {
+      console.log(action.payload);
+
+      return {
+        ...state,
+        tweets: [
+          ...state.tweets.filter((tweet) => tweet.id !== action.payload),
+        ],
+      };
+    },
+    deleteComment(state, action) {
+      console.log(action.payload);
+      return {
+        ...state,
+        tweets: [
+          ...state.tweets.map((tweet) =>
+            tweet.id === action.payload.tweetId
+              ? {
+                  ...tweet,
+                  comments: [
+                    ...tweet.comments.filter(
+                      (comment) => comment.id !== action.payload.commentId
+                    ),
+                  ],
+                }
+              : tweet
+          ),
+        ],
+      };
+    },
+    pagination(state,action){
+      let num = action.payload;
+      return num+=10;
+    }
   },
 });
 
@@ -446,6 +482,9 @@ export const {
   addTweet,
   clearFilteredTweets,
   addComment,
+  deleteTweet,
+  deleteComment,
+  pagination
 } = tweetsSlice.actions;
 
 export default tweetsSlice.reducer;

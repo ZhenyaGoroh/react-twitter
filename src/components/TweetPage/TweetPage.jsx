@@ -26,6 +26,9 @@ function TweetPage() {
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .map((comment) => (
       <Comment
+      authorId = {comment.authorId}
+        tweetId = {id}
+        commentId = {comment.id}
         key={comment.id}
         icon={comment.icon}
         author={comment.author}

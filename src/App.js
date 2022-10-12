@@ -15,7 +15,7 @@ function App() {
   const tweets = useSelector((state) => state.tweets);
   const user = useSelector((state) => state.user);
   const { isAuth } = useAuth();
-  console.log(isAuth);
+  // console.log(isAuth);
   const auth = getAuth();
   onAuthStateChanged(auth,(user)=>{
     if(user){
@@ -26,7 +26,7 @@ function App() {
     localStorage.setItem("tweets", JSON.stringify(tweets));
     localStorage.setItem("user",JSON.stringify(user));
   }, [tweets,user,auth.currentUser]);
-  console.log("dn",auth.currentUser);
+  // console.log("dn",auth.currentUser);
   return (
     <div className="container">
       <div className="main">

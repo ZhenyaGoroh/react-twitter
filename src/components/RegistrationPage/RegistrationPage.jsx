@@ -38,7 +38,19 @@ function RegisterPage() {
         
         navigate("/");
       })
-      .catch(alert("You are already registered, just login"),navigate("/login"));
+      .catch((error)=>{
+        console.log(error.code)
+        if(error.code === "auth/invalid-email"){
+          alert("Invalid email")
+        }
+        if(error.code ==="auth/weak-password"){
+          alert("Password must be at least 6 characters")
+        }
+        if(error.code === "auth/email-already-in-use"){
+          alert("Your are already registered, just login");
+          navigate("/login")
+        }
+      });
   };
 
   return (
@@ -84,7 +96,7 @@ function RegisterPage() {
         </div>
         <div className={s.form__btn}>
           <Button
-            disabled={password === repeatedPassword ? false : true}
+            disabled={password.length>0?password === repeatedPassword ? false :true: true}
             title={
               repeatedPassword.length > 0
                 ? repeatedPassword === password
